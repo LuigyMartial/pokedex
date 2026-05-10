@@ -1,6 +1,7 @@
-import { ScrollView, Text, View, Image, StyleSheet } from "react-native";
+import {ScrollView, Text, View, Image, StyleSheet, Pressable} from "react-native";
 import { useEffect, useState } from "react";
 import {deferTask} from "expo-server";
+import {Link} from "expo-router";
 
 interface PokemonType {
     type: {
@@ -77,20 +78,26 @@ export default function Index() {
     return (
         <ScrollView contentContainerStyle={{ gap: 16, padding: 16}}>
             {pokemons.map((pokemon) => (
-                <View key={pokemon.name} style={{
-                    // @ts-ignore
-                    padding: 20,
-                    backgroundColor: colorsByType[pokemon.types[0].type.name] + 50,
-                    borderRadius: 20
-                }}>
-                    <Text style={styles.name}>{pokemon.name}</Text>
-                    <Text style={styles.type}>{pokemon.types[0].type.name}</Text>
+                <Link
+                    key={pokemon.name}
+                    href={{pathname: "/details", params: {name: pokemon.name }}}
+                    style={{
+                      // @ts-ignore
+                      padding: 20,
+                      backgroundColor: colorsByType[pokemon.types[0].type.name] + 50,
+                      borderRadius: 20
+                    }}
+                >
+                    <View >
+                        <Text style={styles.name}>{pokemon.name}</Text>
+                        <Text style={styles.type}>{pokemon.types[0].type.name}</Text>
 
-                    <View style={{ flexDirection: 'row'}}>
-                        <Image source={{ uri: pokemon.image}} style={{ width: 150, height: 150 }} />
-                        <Image source={{ uri: pokemon.imageBack }} style={{ width: 150, height: 150 }} />
+                        <View style={{ flexDirection: 'row'}}>
+                            <Image source={{ uri: pokemon.image}} style={{ width: 150, height: 150 }} />
+                            <Image source={{ uri: pokemon.imageBack }} style={{ width: 150, height: 150 }} />
+                        </View>
                     </View>
-                </View>
+                </Link>
             ))}
         </ScrollView>
     );
