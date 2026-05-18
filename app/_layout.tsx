@@ -5,7 +5,14 @@ export default function RootLayout() {
   return (
       <Stack>
         // @ts-ignore
-        <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen
+            name="index"
+            options={{
+                title: "Home",
+                headerTitleAlign: "center",
+            }}
+        />
+
         <Stack.Screen
             name="details"
             options={{

@@ -41,7 +41,7 @@ const colorsByType: Record<string, string> = {
 export default function Index() {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-    console.log(JSON.stringify(pokemons[0], null, 2));
+    // console.log(JSON.stringify(pokemons[0], null, 2));
 
     async function fetchPokemons(){
         try {

@@ -8,23 +8,32 @@ export default function Details(){
     // console.log(params.name);
     async function fetchPokemonByName(name: string){
         // TODO
-        /*try {
+        try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
+            const data = await response.json();
 
-        } catch(error){}*/
+            //console.log(data);
+
+        } catch(error){
+            console.log(error);
+        }
     }
 
-    useEffect(( ) => {}, [])
+    useEffect(() => {
+        fetchPokemonByName(params.name as string);
+    }, []);
 
     return (
         <>
-            <Stack.Screen options={{ title: params.name as string }} />
+            <Stack.Screen options={{ title: params.name as string }}/>
 
             <ScrollView contentContainerStyle={{
                 gap: 16,
                 padding: 16,
-                backgroundColor: "red",
+                backgroundColor: "#96D9D6",
             }}>
-                <Text>{params.name}</Text>
+                <Text style={{textAlign: "center"}}>{params.name}</Text>
+                <Text>Details</Text>
             </ScrollView>
         </>
     );
